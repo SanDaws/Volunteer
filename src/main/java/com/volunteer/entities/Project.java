@@ -5,14 +5,24 @@ import java.time.LocalDate;
 
 public class Project {
 
+    
     private int id;
     private String title;
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
     private int createdBy;//user id
-        
+    
     private User userFk;
+    
+    public Project(int id, String title, String description, LocalDate startDate, LocalDate endDate,String name) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        userFk.setName(name);
+    }
 
     public Project(String tittle, String description, LocalDate startDate, LocalDate endDate, int createdBy) {
         this.title = tittle;
