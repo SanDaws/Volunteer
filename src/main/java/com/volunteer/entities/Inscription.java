@@ -1,19 +1,27 @@
 package com.volunteer.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Inscription {
     
     private int id;
     private int userId;
     private int projectId;
-    private Date date;
+    private LocalDate date;//inscriptoin date
     private Project ProjectFK;
     private User UserFK;
 
     
-    public Inscription(Date date, int projectId, int userId) {
+    public Inscription(int id, String userName,String ProjectTitle , LocalDate date) {
+        this.id = id;
+        ProjectFK.setTitle(ProjectTitle);
+        UserFK.setName(userName);
         this.date = date;
+    }
+
+    public Inscription( int projectId, int userId) {
+        this.date = LocalDate.now();
         this.projectId = projectId;
         this.userId = userId;
     }
@@ -42,11 +50,11 @@ public class Inscription {
         this.projectId = projectId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
     
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
     
