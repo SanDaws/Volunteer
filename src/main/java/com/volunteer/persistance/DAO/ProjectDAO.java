@@ -2,6 +2,9 @@ package com.volunteer.persistance.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +13,8 @@ import com.volunteer.persistance.db.DbContext;
 
 public class ProjectDAO {
     private String table= "projects";
-    
+    private String userTable="users";
+
     //Create a project
     public void addProject(Project objProject){
         String query=String.format("INTSERT INTO %s (title,description,start_date,end_date,created_by) VALUES (?,?,?,?,?)",table);
@@ -30,13 +34,34 @@ public class ProjectDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        
-
     }
-    //TODOlist all projects avaliables
+    
+    //list all projects avaliables
     public List<Project> getAllProjects(){
         List<Project> projects= new ArrayList<Project>();
-        //TODO definition
+        String query=String.format("SELECT projects.title,projects.description,projects.start_date,projects.end_date,users.name FROM %s JOIN users ON projects.created_by = users.id;  ;",table);
+        try (
+            Connection con= DbContext.getConeection();
+            Statement statement= con.createStatement();
+            ResultSet resul=statement.executeQuery(query);
+        ){
+            while (resul.next()) {
+                LocalDate Startdate= resul.getDate("start_date").toLocalDate();
+                LocalDate Enddate= resul.getDate("end_date").toLocalDate();
+                Project project= new Project(
+                    resul.getInt("id"),
+                    resul.getString("title"),
+                    resul.getString("description"),
+                    Startdate,
+                    Enddate,
+                    resul.getString("name")
+                );
+                projects.add(project);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         
         return  projects;
 
