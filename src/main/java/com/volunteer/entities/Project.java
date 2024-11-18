@@ -1,19 +1,20 @@
 package com.volunteer.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Project {
 
     private int id;
     private String title;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int createdBy;//user id
         
     private User userFk;
 
-    public Project(String tittle, String description, Date startDate, Date endDate, int createdBy) {
+    public Project(String tittle, String description, LocalDate startDate, LocalDate endDate, int createdBy) {
         this.title = tittle;
         this.description = description;
         this.startDate = startDate;
@@ -47,19 +48,19 @@ public class Project {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
