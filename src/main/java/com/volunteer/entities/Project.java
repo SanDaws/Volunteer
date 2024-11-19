@@ -81,6 +81,9 @@ public class Project {
     public void setCreatedBy(int createdBy) {
         this.createdBy = createdBy;
     }
+    public boolean  IsEmpty(){
+        return this.id==0|| this.title==null|| this.createdBy==0;
+    }
 
     public String toStringCreated(){
         return "Projects{" +

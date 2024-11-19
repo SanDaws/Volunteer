@@ -57,6 +57,9 @@ public class Inscription {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+    public boolean IsEmpty(){
+        return this.id==0||this.userId==0||this.projectId==0;
+    }
     
     @Override
     public String toString() {

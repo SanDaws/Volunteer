@@ -76,11 +76,13 @@ public class User {
         this.role = role;
     }
     
+    public boolean IsEmpty(){
+        return this.getName()==null || this.id==0 || this.password==null ||this.email==null;
+    }
     
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", email=" + email  + ", role=" + role
-                + "]";
+        return "id=" + id + ", name=" + name + ", email=" + email  + ", role=" + role;
     }
     
     
