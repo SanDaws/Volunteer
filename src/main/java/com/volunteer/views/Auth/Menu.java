@@ -3,7 +3,6 @@ package com.volunteer.views.Auth;
 import java.util.Scanner;
 
 import com.volunteer.entities.User;
-import com.volunteer.views.RegisterView;
 
 public class Menu {
     public Scanner sc = new Scanner(System.in);
