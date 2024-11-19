@@ -4,13 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.volunteer.entities.User;
 import com.volunteer.persistance.db.DbContext;
 
 public class UserDAO {
     private String table= "users";
-
+    //add user
     public void addUser(User objUser){
         String SQLsentence=String.format("INSERT INTO %s (name,email,password,role) VALUES (?,?,?,?);",table);
         try (
@@ -29,17 +31,17 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
-
-    public User GetUserByid(int id){
-        User user=new User();
-        String GetUser=String.format("SELECT * FROM %s WHERE id = %d;",table,id);
+ //get user by name or email
+    public List<User> GetUserByid(String name,String email){
+        List<User> users=new ArrayList<User>();
+        String GetUser=String.format("SELECT * FROM %s WHERE name = %s OR email= %s;",table,name,email);
         try (
             Connection con= DbContext.getConeection();
             Statement statement= con.createStatement();
             ResultSet resul=statement.executeQuery(GetUser);
         ){
             while (resul.next()) {
-                user=new User(
+                User user=new User(
                     resul.getInt("id"),
                     resul.getString("name"),
                     resul.getString("email"),
@@ -47,13 +49,13 @@ public class UserDAO {
                     resul.getString("role")
 
                 );
-                
+                users.add(user);
             }
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-        return user;
+        return users;
 
         
 
