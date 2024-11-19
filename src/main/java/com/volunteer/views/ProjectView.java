@@ -10,7 +10,7 @@ public class ProjectView {
     public ProjectView() {
         this.projectController=new ProjectController();
     }
-
+    //TODOimplement all parts of the views
     public void Menu(User user){
         
     }

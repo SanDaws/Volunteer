@@ -9,7 +9,7 @@ public class InterMenu {
     public Scanner sc = new Scanner(System.in);
     public InterMenu() {
         int choice;
-
+        //TODOfinish this part of the views
         do {
             System.out.println("""
                 1. projects
