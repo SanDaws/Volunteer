@@ -9,7 +9,7 @@ public class Menu {
     public Scanner sc = new Scanner(System.in);
     public User user;
 
-    //TODOone option for register one for  log in
+    //one option for register one for  log in
     public User Menu(){
         int opcion;
 
@@ -42,6 +42,7 @@ public class Menu {
     
                 case 2:
                 RegisterView rv= new RegisterView();
+                user=rv.RegistUser();
                 
                 break;
 
