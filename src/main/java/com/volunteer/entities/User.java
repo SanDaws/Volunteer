@@ -1,8 +1,9 @@
 package com.volunteer.entities;
 
-public class User {
+import com.volunteer.Enums.role;
 
-    private static  enum role{VOLUNTARIO, PUBLICANTE};
+public class User {
+   
     
     private int id;
     private String name;
@@ -26,6 +27,13 @@ public class User {
         this.name = name;
         this.password = password;
         this.role = role;
+    }
+
+    public User(int id, String name, String email, String role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.role = (role=="VOLUNTARIO")? this.role.VOLUNTARIO:this.role.PUBLICANTE;
     }
     
     public int getId() {

@@ -32,7 +32,7 @@ public class UserDAO {
         }
     }
  //get user by name or email
-    public List<User> GetUserByid(String name,String email){
+    public List<User> GetUser(String name,String email){
         List<User> users=new ArrayList<User>();
         String GetUser=String.format("SELECT * FROM %s WHERE name = %s OR email= %s;",table,name,email);
         try (
@@ -45,7 +45,6 @@ public class UserDAO {
                     resul.getInt("id"),
                     resul.getString("name"),
                     resul.getString("email"),
-                    resul.getString("password"),
                     resul.getString("role")
 
                 );
@@ -56,12 +55,32 @@ public class UserDAO {
 
         }
         return users;
-
-        
-
-
     }
+    //log in, returns a user object whiouth password
+    public User LogIn(String name,String password){
+        User user=new User();
+        String GetUser=String.format("SELECT * FROM %s WHERE name = %s AND password= %s;",table,name,password);
+        try (
+            Connection con= DbContext.getConeection();
+            Statement statement= con.createStatement();
+            ResultSet resul=statement.executeQuery(GetUser);
+        ){
 
+            user=new User(
+                resul.getInt("id"),
+                resul.getString("name"),
+                resul.getString("email"),
+                resul.getString("role")
+
+            );
+                
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return user;
+    }
+    //TODO--implement edituser in controllers
     public void editUser(int id,User objUpdatedUser){
         String alterUserQuery=  String.format("UPDATE %s SET name=?,email=?,password=?,role=? WHERE id=%d",table,id);
         try (
