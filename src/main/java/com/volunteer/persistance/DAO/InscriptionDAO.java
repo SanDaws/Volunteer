@@ -13,7 +13,7 @@ import com.volunteer.persistance.db.DbContext;
 
 public class InscriptionDAO {
     private String table= "inscriptions";
-    //TODOonly volunteers inscribe to a project
+    // inscribe to a project
     public void addInscription(Inscription objInscription){
         String query=String.format("INSERT INTO %s (date,user_id,project_id) VALUES (?,?,?);",table);
         try (
@@ -31,7 +31,7 @@ public class InscriptionDAO {
         }
 
         }
-    //volunteers inscriptios record
+    //volunteers inscriptioNs record
     public List<Inscription> volunteersRecord(int idVolunteer){
         List<Inscription> inscriptionsList= new ArrayList<Inscription>();
         String query=String.format("SELECT inscriptions.date,projects.title,user.name FROM %s JOIN users ON inscriptions.user_id = users.id JOIN projects ON inscriptions.project_id = projects.id WHERE users.id = %d; ",table,idVolunteer);
