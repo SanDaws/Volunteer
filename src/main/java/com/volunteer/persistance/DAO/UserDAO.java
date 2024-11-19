@@ -66,13 +66,15 @@ public class UserDAO {
             ResultSet resul=statement.executeQuery(GetUser);
         ){
 
-            user=new User(
+            if (resul.next()) {
+                user=new User(
                 resul.getInt("id"),
                 resul.getString("name"),
                 resul.getString("email"),
                 resul.getString("role")
 
             );
+            }
                 
         } catch (Exception e) {
             e.printStackTrace();
