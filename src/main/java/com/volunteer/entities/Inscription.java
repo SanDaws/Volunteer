@@ -12,14 +12,14 @@ public class Inscription {
     private Project ProjectFK;
     private User UserFK;
 
-    
+    //receive
     public Inscription(int id, String userName,String ProjectTitle , LocalDate date) {
         this.id = id;
         ProjectFK.setTitle(ProjectTitle);
         UserFK.setName(userName);
         this.date = date;
     }
-
+    //creation from 
     public Inscription( int projectId, int userId) {
         this.date = LocalDate.now();
         this.projectId = projectId;
